@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <main id="app"></main>
+    <script>
+        let personajes = [];
+let totalPokes = 1026; /* debe agregarse uno mas ya q el indice comienza en 0 */
+
+async function  conexionLista() {
+    const res = await fetch('https://thronesapi.com/api/v2/Characters?family=House%20Stark')
+    const data = await res.json()
+    personajes = data;
+    // mostrarLista(personajes)
+    for(var i =0;i < personajes.length; i++ ){
+        console.log(personajes[i].fullName);
+        document.getElementById("app").innerHTML += "<p>" + personajes[i].fullName + "</p>"
+        document.getElementById("app").innerHTML += "<p>" + personajes[i].family + "</p>"
+        document.getElementById("app").innerHTML += `<img src="${personajes[i].imageUrl}" whidth="200">`;
+    }
+}
+
+conexionLista()
+    </script>
+</body>
+</html>
